@@ -5,7 +5,7 @@
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 // Pines de LEDs
-int LED1 = 21;
+int LED1 = 23;
 int LED2 = 19;
 int LED3 = 18;
 int LED4 = 5;
@@ -64,7 +64,7 @@ void loop() {
   if (lectura1 == LOW && estadoPulsador1 == false) {
     estadoLed1 = !estadoLed1;
     digitalWrite(LED1, estadoLed1);
-    mostrarEnLCD("LED 1", estadoLed1, "Rojo");
+    mostrarEnLCD("LED 1", estadoLed1, "Amarillo");
     estadoPulsador1 = true;
     delay(200);
   }
@@ -76,7 +76,7 @@ void loop() {
   if (lectura2 == LOW && estadoPulsador2 == false) {
     estadoLed2 = !estadoLed2;
     digitalWrite(LED2, estadoLed2);
-    mostrarEnLCD("LED 2", estadoLed2, "Verde");
+    mostrarEnLCD("LED 2", estadoLed2, "Azul");
     estadoPulsador2 = true;
     delay(200);
   }
@@ -88,7 +88,7 @@ void loop() {
   if (lectura3 == LOW && estadoPulsador3 == false) {
     estadoLed3 = !estadoLed3;
     digitalWrite(LED3, estadoLed3);
-    mostrarEnLCD("LED 3", estadoLed3, "Azul");
+    mostrarEnLCD("LED 3", estadoLed3, "Rojo");
     estadoPulsador3 = true;
     delay(200);
   }
@@ -100,7 +100,7 @@ void loop() {
   if (lectura4A == LOW && estadoPulsador4A == false) {
     estadoLed4 = !estadoLed4;
     digitalWrite(LED4, estadoLed4);
-    mostrarEnLCD("LED 4", estadoLed4, "Blanco");
+    mostrarEnLCD("LED 4", estadoLed4, "Verde");
     estadoPulsador4A = true;
     delay(200);
   }
@@ -112,7 +112,7 @@ void loop() {
   if (lectura4B == LOW && estadoPulsador4B == false) {
     estadoLed4 = !estadoLed4;
     digitalWrite(LED4, estadoLed4);
-    mostrarEnLCD("LED 4", estadoLed4, "Blanco");
+    mostrarEnLCD("LED 4", estadoLed4, "Verde");
     estadoPulsador4B = true;
     delay(200);
   }
