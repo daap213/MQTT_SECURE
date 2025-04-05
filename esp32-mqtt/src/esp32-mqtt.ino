@@ -1,8 +1,20 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
-
+#include <WiFi.h>
+#include <HTTPClient.h>
+#include <PubSubClient.h>
 // Inicializa LCD 16x2 en dirección 0x27
 LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+// Configuracion wifi
+const char* ssid     = "Wokwi-GUEST";
+const char* password = "";
+
+//Configuracion mqtt
+const char* mqttBroker = "test.mosquitto.org";
+const int mqttPort = 1883;
+const char* baseTopic = "dap/test/";
+const char* topicLCD = "dap/test/esp";
 
 // Pines de LEDs
 int LED1 = 23;
