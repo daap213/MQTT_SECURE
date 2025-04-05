@@ -51,7 +51,7 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
   }
 
   if (String(topic) == topicLCD) {
-    mostrarEnLCD("Mensaje recibido:", mensaje);
+    mostrarEnLCD("Comd. externo:", mensaje);
   }
 }
 
@@ -118,7 +118,7 @@ void loop() {
   if (lectura1 == LOW && !estadoPulsador1) {
     estadoLed1 = !estadoLed1;
     digitalWrite(LED1, estadoLed1);
-    mostrarEnLCD("LED 1: " + String(estadoLed1 ? "ON" : "OFF"), "Color: Amarillo");
+    mostrarEnLCD("MOTOR1: " + String(estadoLed1 ? "ON" : "OFF"), "LED: Amarillo");
     publicarEstado("amarillo", estadoLed1);
     estadoPulsador1 = true;
     delay(200);
@@ -130,7 +130,7 @@ void loop() {
   if (lectura2 == LOW && !estadoPulsador2) {
     estadoLed2 = !estadoLed2;
     digitalWrite(LED2, estadoLed2);
-    mostrarEnLCD("LED 2: " + String(estadoLed2 ? "ON" : "OFF"), "Color: Azul");
+    mostrarEnLCD("MOTOR2: " + String(estadoLed2 ? "ON" : "OFF"), "LED: Azul");
     publicarEstado("azul", estadoLed2);
     estadoPulsador2 = true;
     delay(200);
@@ -142,7 +142,7 @@ void loop() {
   if (lectura3 == LOW && !estadoPulsador3) {
     estadoLed3 = !estadoLed3;
     digitalWrite(LED3, estadoLed3);
-    mostrarEnLCD("LED 3: " + String(estadoLed3 ? "ON" : "OFF"), "Color: Rojo");
+    mostrarEnLCD("MOTOR3: " + String(estadoLed3 ? "ON" : "OFF"), "LED: Rojo");
     publicarEstado("rojo", estadoLed3);
     estadoPulsador3 = true;
     delay(200);
@@ -154,7 +154,7 @@ void loop() {
   if (lectura4A == LOW && !estadoPulsador4A) {
     estadoLed4 = !estadoLed4;
     digitalWrite(LED4, estadoLed4);
-    mostrarEnLCD("LED 4: " + String(estadoLed4 ? "ON" : "OFF"), "Color: Verde");
+    mostrarEnLCD("MOTOR4: " + String(estadoLed4 ? "ON" : "OFF"), "LED: Verde");
     publicarEstado("verde", estadoLed4);
     estadoPulsador4A = true;
     delay(200);
@@ -166,7 +166,7 @@ void loop() {
   if (lectura4B == LOW && !estadoPulsador4B) {
     estadoLed4 = !estadoLed4;
     digitalWrite(LED4, estadoLed4);
-    mostrarEnLCD("LED 4: " + String(estadoLed4 ? "ON" : "OFF"), "Color: Verde");
+    mostrarEnLCD("MOTOR4: " + String(estadoLed4 ? "ON" : "OFF"), "LED: Verde");
     publicarEstado("verde", estadoLed4);
     estadoPulsador4B = true;
     delay(200);
