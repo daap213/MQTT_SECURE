@@ -50,8 +50,42 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
     mensaje += (char)payload[i];
   }
 
-  if (String(topic) == topicLCD) {
-    mostrarEnLCD("Señal Externa:", mensaje);
+  String topico = String(topic);
+  bool encender = (mensaje == "ON");
+
+  if (topico == topicLCD) {
+    mostrarEnLCD("Orden Externa:", mensaje);
+    return;
+  }else if (topico == "dap/test/ext/msg") {
+    mostrarEnLCD("MSG Externo:", mensaje);
+  }
+
+  if (topico == "dap/test/ext/motor1") {
+    digitalWrite(LED1, encender);
+    estadoLed1 = encender;
+    mostrarEnLCD("Orden Ext.", "Motor1: " + mensaje);
+  }
+  else if (topico == "dap/test/ext/motor2") {
+    digitalWrite(LED2, encender);
+    estadoLed2 = encender;
+    mostrarEnLCD("Orden Ext.", "Motor2: " + mensaje);
+  }
+  else if (topico == "dap/test/ext/motor3") {
+    digitalWrite(LED3, encender);
+    estadoLed3 = encender;
+    mostrarEnLCD("Orden Ext.", "Motor3: " + mensaje);
+  }
+  else if (topico == "dap/test/ext/motor4") {
+    digitalWrite(LED4, encender);
+    estadoLed4 = encender;
+    mostrarEnLCD("Orden Ext.", "Motor4: " + mensaje);
+  }
+  else if (topico == "dap/test/ext/all") {
+    digitalWrite(LED1, encender); estadoLed1 = encender;
+    digitalWrite(LED2, encender); estadoLed2 = encender;
+    digitalWrite(LED3, encender); estadoLed3 = encender;
+    digitalWrite(LED4, encender); estadoLed4 = encender;
+    mostrarEnLCD("Orden Ext.", "Todos: " + mensaje);
   }
 }
 
@@ -71,7 +105,16 @@ void conectarMQTT() {
     String clientId = "ESP32Client-" + String((uint32_t)ESP.getEfuseMac());
     if (client.connect(clientId.c_str())) {
       Serial.println("conectado");
+
       client.subscribe(topicLCD);
+      client.subscribe("dap/test/ext/motor1");
+      client.subscribe("dap/test/ext/motor2");
+      client.subscribe("dap/test/ext/motor3");
+      client.subscribe("dap/test/ext/motor4");
+      client.subscribe("dap/test/ext/msg");
+      client.subscribe("dap/test/ext/all");
+      // Publicar estados actuales de LEDs
+      publicarEstadosActuales();
     } else {
       Serial.print("fallo, rc=");
       Serial.print(client.state());
@@ -79,6 +122,12 @@ void conectarMQTT() {
       delay(5000);
     }
   }
+}
+void publicarEstadosActuales() {
+  publicarEstado("amarillo", estadoLed1);
+  publicarEstado("azul", estadoLed2);
+  publicarEstado("rojo", estadoLed3);
+  publicarEstado("verde", estadoLed4);
 }
 
 void setup() {
