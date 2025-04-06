@@ -51,7 +51,7 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
   }
 
   if (String(topic) == topicLCD) {
-    mostrarEnLCD("Comd. externo:", mensaje);
+    mostrarEnLCD("Señal Externa:", mensaje);
   }
 }
 
