@@ -60,32 +60,40 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
     mostrarEnLCD("MSG Externo:", mensaje);
   }
 
-  if (topico == "dap/test/ext/motor1") {
+  // Validaciones para no cambiar si ya está en ese estado
+  if (topico == "dap/test/ext/motor1" && estadoLed1 != encender) {
     digitalWrite(LED1, encender);
     estadoLed1 = encender;
     mostrarEnLCD("Orden Ext.", "Motor1: " + mensaje);
+    publicarEstado("amarillo", estadoLed1);
   }
-  else if (topico == "dap/test/ext/motor2") {
+  else if (topico == "dap/test/ext/motor2" && estadoLed2 != encender) {
     digitalWrite(LED2, encender);
     estadoLed2 = encender;
     mostrarEnLCD("Orden Ext.", "Motor2: " + mensaje);
+    publicarEstado("azul", estadoLed2);
   }
-  else if (topico == "dap/test/ext/motor3") {
+  else if (topico == "dap/test/ext/motor3" && estadoLed3 != encender) {
     digitalWrite(LED3, encender);
     estadoLed3 = encender;
     mostrarEnLCD("Orden Ext.", "Motor3: " + mensaje);
+    publicarEstado("rojo", estadoLed3);
   }
-  else if (topico == "dap/test/ext/motor4") {
+  else if (topico == "dap/test/ext/motor4" && estadoLed4 != encender) {
     digitalWrite(LED4, encender);
     estadoLed4 = encender;
     mostrarEnLCD("Orden Ext.", "Motor4: " + mensaje);
+    publicarEstado("verde", estadoLed4);
   }
   else if (topico == "dap/test/ext/all") {
-    digitalWrite(LED1, encender); estadoLed1 = encender;
-    digitalWrite(LED2, encender); estadoLed2 = encender;
-    digitalWrite(LED3, encender); estadoLed3 = encender;
-    digitalWrite(LED4, encender); estadoLed4 = encender;
-    mostrarEnLCD("Orden Ext.", "Todos: " + mensaje);
+    bool cambio = false;
+    if (estadoLed1 != encender) { digitalWrite(LED1, encender); estadoLed1 = encender; publicarEstado("amarillo", estadoLed1); cambio = true; }
+    if (estadoLed2 != encender) { digitalWrite(LED2, encender); estadoLed2 = encender; publicarEstado("azul", estadoLed2); cambio = true; }
+    if (estadoLed3 != encender) { digitalWrite(LED3, encender); estadoLed3 = encender; publicarEstado("rojo", estadoLed3); cambio = true; }
+    if (estadoLed4 != encender) { digitalWrite(LED4, encender); estadoLed4 = encender; publicarEstado("verde", estadoLed4); cambio = true; }
+    if (cambio) {
+      mostrarEnLCD("Orden Ext.", "Todos: " + mensaje);
+    }
   }
 }
 
