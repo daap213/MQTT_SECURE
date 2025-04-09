@@ -14,6 +14,9 @@ const char* password = "";
 // MQTT over WebSockets
 const char* mqttBroker = "mqttest.daaptech.org";
 const int mqttPort = 443; // MQTT over WebSockets Secure (WSS)
+const char* mqttUser = "admin";  // Usuario para la conexión MQTT
+const char* mqttPassword = "miclaveprueba";  // Clave para la conexión MQTT
+const char* mqttPath = "/"; // Path del WebSocket (ajusta si es necesario)
 const char* baseTopic = "dap/test/";
 const char* topicLCD = "dap/test/esp";
 
@@ -49,11 +52,16 @@ connect_to_wifi:
 connect_to_host:
     Serial.println("Conectando al host...");
     client.disconnect();
-    client.beginSSL(mqttBroker, mqttPort,"/","","mqtt");
-    client.setReconnectInterval(2000);
+
+    // Configurar encabezados personalizados
+    client.setExtraHeaders("Origin: https://daaptech.org");
+
+    // Iniciar conexión WebSocket
+    client.beginSSL(mqttBroker, mqttPort, mqttPath, "", "mqtt");
+    client.setReconnectInterval(1500);
 
     Serial.print("Conectando al broker MQTT...");
-    while (!mqtt.connect("ESP32Client")) {
+    while (!mqtt.connect("ESP32Client", mqttUser, mqttPassword)) { // Incluye usuario y contraseña
         Serial.print(".");
         delay(1000);
         if (WiFi.status() != WL_CONNECTED) {
