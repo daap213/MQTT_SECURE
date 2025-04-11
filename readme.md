@@ -1,3 +1,24 @@
+# Simulación MQTT con ESP32 usando Wokwi y PlatformIO
+
+Este proyecto simula un dispositivo ESP32 comunicándose mediante MQTT, útil para probar y validar interacciones basadas en MQTT en entornos IoT sin necesidad de hardware físico.
+
+## Características
+
+- Simula un dispositivo ESP32.  
+- Se conecta a un broker MQTT.  
+- Publica y se suscribe a tópicos MQTT.  
+- Utiliza [Wokwi](https://marketplace.visualstudio.com/items?itemName=wokwi.wokwi-vscode) para simular el comportamiento del ESP32.  
+- Gestionado mediante [PlatformIO](https://platformio.org).  
+
+
+## Compilación
+
+Este es un proyecto basado en [PlatformIO](https://platformio.org). Para compilarlo, primero [instala PlatformIO](https://docs.platformio.org/en/latest/core/installation/index.html) y luego ejecuta el siguiente comando:
+
+```bash
+pio run
+```
+
 # 🔐 Seguridad en Comunicaciones MQTT para Entornos Industriales
 
 Este proyecto tiene como objetivo **garantizar la seguridad de las comunicaciones entre dispositivos en un entorno industrial simulado**, centrándose en la protección del servidor que aloja el **broker MQTT**.
@@ -26,31 +47,5 @@ Se implementa una infraestructura segura en un **servidor VPS**, que simula un e
 - Garantizar la **confidencialidad**, **integridad** y **disponibilidad** de las comunicaciones.
 - Integrar una interfaz de monitoreo y análisis de datos.
 
-## 📷 Vista Previa
+## 📷 Infraestructura
 ![alt text](/recursos/image.png)
-
-# ESP32 MQTT Simulation with Wokwi and PlatformIO
-
-This project simulates an ESP32 device communicating via MQTT. It can be used to test and validate MQTT-based interactions in IoT environments without requiring physical hardware.
-
-## Features
-
-- Simulates an ESP32 device.
-- Connects to an MQTT broker.
-- Publishes and subscribes to MQTT topics.
-- Uses [Wokwi](https://marketplace.visualstudio.com/items?itemName=wokwi.wokwi-vscode) to simulate the ESP32 behavior.
-- Managed using [PlatformIO](https://platformio.org).
-
-Use [Wokwi](https://marketplace.visualstudio.com/items?itemName=wokwi.wokwi-vscode) to simulate this project.
-
-## Building
-
-This is a [PlatformIO](https://platformio.org) project. To build it, [install PlatformIO](https://docs.platformio.org/en/latest/core/installation/index.html), and then run the following command:
-
-```
-pio run
-```
-
-## Simulate the project
-
-To simulate this project, install [Wokwi for VS Code](https://marketplace.visualstudio.com/items?itemName=wokwi.wokwi-vscode). Open the project directory in Visual Studio Code, press **F1** and select "Wokwi: Start Simulator".
