@@ -134,7 +134,7 @@ void conectarWiFi() {
 
 void conectarMQTT() {
   // Configurar el certificado CA
-  espClient.setCACert(ca_cert);
+  //espClient.setCACert(ca_cert);
   espClient.setInsecure();
 
   while (!client.connected()) {
