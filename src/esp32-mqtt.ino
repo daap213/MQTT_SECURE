@@ -124,24 +124,29 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
 
 void conectarWiFi() {
   Serial.print("Conectando a WiFi");
+  mostrarEnLCD("WiFi", "Conectando");
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
+    mostrarEnLCD("WiFi", ".....");
     Serial.print(".");
   }
   Serial.println("\nWiFi conectado");
+  mostrarEnLCD("WiFi", "Conectado");
+
 }
 
 void conectarMQTT() {
   // Configurar el certificado CA
-  //espClient.setCACert(ca_cert);
   espClient.setInsecure();
 
   while (!client.connected()) {
     Serial.print("Conectando a MQTT...");
+    mostrarEnLCD("MQTT", "Conectando");
     String clientId = "ESP32Client-" + String((uint32_t)ESP.getEfuseMac());
     if (client.connect(clientId.c_str(), mqttUser, mqttPassword)) {
       Serial.println("conectado");
+      mostrarEnLCD("MQTT", "Conectado");
 
       client.subscribe(topicLCD);
       client.subscribe("dap/test/ext/motor1");
@@ -153,6 +158,7 @@ void conectarMQTT() {
       // Publicar estados actuales de LEDs
       publicarEstadosActuales();
     } else {
+      mostrarEnLCD("MQTT", ".....");
       Serial.print("fallo, rc=");
       Serial.print(client.state());
       Serial.println(" intentando en 5 segundos");
