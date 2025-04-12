@@ -48,4 +48,10 @@ Se implementa una infraestructura segura en un **servidor VPS**, que simula un e
 - Integrar una interfaz de monitoreo y análisis de datos.
 
 ## 📷 Infraestructura
-![alt text](/recursos/image.png)
+![alt text](/recursos/infraestructura.png)
+
+## 📷 Diagrama ESP32
+![alt text](/recursos/diagrama.png)
+
+## 📷 Dashboard nodeRED
+![alt text](/recursos/dashboard.png)
